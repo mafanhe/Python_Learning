@@ -13,7 +13,7 @@ from __future__ import print_function, division
 
 import turtle
 
-from polygon import arc
+from thinkPython2.polygon import arc
 
 
 def petal(t, r, angle):

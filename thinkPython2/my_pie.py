@@ -1,6 +1,8 @@
-import polygon as pg
-import turtle
 import math
+import turtle
+
+from thinkPython2 import polygon as pg
+
 
 def rectangle(t,r,angle):
     pg.polyline(t,2,r,180-angle)

@@ -1,7 +1,7 @@
 import math
 import string
-import matplotlib.pyplot as plt
-from analyze_book1 import skip_gutenberg_header
+
+from thinkPython2.analyze_book1 import skip_gutenberg_header
 
 
 def file2dict(filename):

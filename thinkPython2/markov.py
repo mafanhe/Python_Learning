@@ -1,8 +1,8 @@
 # -*-coding:utf-8 -*-
 
 
-from analyze_book1 import skip_gutenberg_header
 import random
+
 import jieba
 
 suffix_map = {}

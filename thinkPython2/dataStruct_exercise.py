@@ -1,5 +1,6 @@
 import string
-from list_exercises import read2list
+
+from thinkPython2.list_exercises import read2list
 
 
 def deal_text(t):

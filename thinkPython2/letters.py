@@ -13,7 +13,7 @@ from __future__ import print_function, division
 
 import turtle
 
-from polygon import circle, arc
+from thinkPython2.polygon import circle, arc
 
 # LEVEL 0 PRIMITIVES 
 # fd, bk, lt, rt, pu, pd

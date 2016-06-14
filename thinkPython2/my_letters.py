@@ -1,6 +1,7 @@
-import polygon as pg
-import math
 import turtle
+
+from thinkPython2 import polygon as pg
+
 
 def _d(t,length):
     t.rt(90)
