@@ -41,6 +41,7 @@ def reverseList(pHead):
 		c = n
 	return p
 
+
 def reverseList2(pHead):
 	p = pHead
 	if p:
