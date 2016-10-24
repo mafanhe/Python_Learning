@@ -66,21 +66,23 @@ def lasttraverse2(t):
 		print t.data,
 
 
-t = Tree('-',Tree('*',Tree('a'),Tree('b')),Tree('/',Tree('d'),Tree('e')))
-# t= Tree()
+if __name__ == "__main__":
 
-firsttraverse(t)
-print
-firsttraverse2(t)
+	t = Tree('-',Tree('*',Tree('a'),Tree('b')),Tree('/',Tree('d'),Tree('e')))
+	# t= Tree()
 
-print
+	firsttraverse(t)
+	print
+	firsttraverse2(t)
 
-midtraverse(t)
-print
-midtraverse2(t)
+	print
 
-print
+	midtraverse(t)
+	print
+	midtraverse2(t)
 
-lasttraverse(t)
-print
-lasttraverse2(t)
+	print
+
+	lasttraverse(t)
+	print
+	lasttraverse2(t)
