@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# 旋转数组最小值
+# 题目8：旋转数组最小值
 def mini(l):
     index1 = 0
     index2 = len(l)-1
