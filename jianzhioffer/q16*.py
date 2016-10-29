@@ -36,8 +36,8 @@ if __name__ == "__main__":
 	# l = None
 	# l = ListNode(1)
 	printNode(l)
-	reverse_list2(l)
-	printNode(l)
+	p = reverse_list2(l)
+	printNode(p)
 
 
 
