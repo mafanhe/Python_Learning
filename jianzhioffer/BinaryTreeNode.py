@@ -6,15 +6,15 @@ class BinaryTreeNode:
 
 
 def first_traversal(t):
-    l = []
-    while t or l:
-        # print l
+    s = []
+    while t or s:
+        # print s
         if(t):
             print t.data,
-            l.append(t)
+            s.append(t)
             t = t.left
         else:
-            t = l.pop()
+            t = s.pop()
             t = t.right
 
 
