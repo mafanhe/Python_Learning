@@ -11,3 +11,11 @@ def printNode(l, j=20):
 		l = l.next
 		i += 1
 	print 'None'
+
+
+class ComplexListNode:
+	def __int__(self, value, next, sibling):
+		self.value = value
+		self.next = next
+		self.sibling = sibling
+
