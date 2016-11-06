@@ -13,9 +13,20 @@ def printNode(l, j=20):
 	print 'None'
 
 
+# doubly linked list
+class DoubleListNode:
+	def __init__(self, value, pre=None, next=None):
+		self.value = value
+		self.pre = pre
+		self.next = next
+
+
 class ComplexListNode:
-	def __int__(self, value, next, sibling):
+	def __init__(self, value=None, next=None, sibling=None):
 		self.value = value
 		self.next = next
 		self.sibling = sibling
 
+if __name__ == '__main__':
+	l = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5, ListNode(6, ListNode(7)))))))
+	printNode(l)

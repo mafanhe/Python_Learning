@@ -23,3 +23,7 @@ def firsttraverse2(t):
         print t.data,
         firsttraverse2(t.left)
         firsttraverse2(t.right)
+
+if __name__ == "__main__":
+    t = BinaryTreeNode('-', BinaryTreeNode('*', BinaryTreeNode('a'), BinaryTreeNode('b')),
+                   BinaryTreeNode('/', BinaryTreeNode('d'), BinaryTreeNode('e')))
