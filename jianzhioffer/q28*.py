@@ -15,11 +15,10 @@ def permuta(result, string):
 
 
 def permuta2(string, begin):
-	# if begin==2:
-	# 	print string
+
 	if begin == 2:
 		print string
-		# return
+		return
 	for i in range(begin, len(string)):
 		string[i], string[begin] = string[begin], string[i]
 		permuta2(string, begin+1)
