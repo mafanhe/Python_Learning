@@ -14,7 +14,7 @@ def convert_binary_search_tree(pHead):
 	return pHead
 
 
-def convert_node(pNode,pLastNodeList):
+def convert_node(pNode, pLastNodeList):
 	if pNode is None:
 		return
 	pCurrent = pNode
@@ -28,13 +28,14 @@ def convert_node(pNode,pLastNodeList):
 		pLastNodeList=convert_node(pCurrent.right, pLastNodeList)
 	return pLastNodeList
 
+
 def print_node(pNode):
 	while pNode:
 		print pNode.data
 		pNode = pNode.right
 
 if __name__ == "__main__":
-	t = BinaryTreeNode('10', BinaryTreeNode('6', BinaryTreeNode('4'), BinaryTreeNode('8')),
-					   BinaryTreeNode('14', BinaryTreeNode('12'), BinaryTreeNode('16')))
+	t = BinaryTreeNode('10', BinaryTreeNode('6', BinaryTreeNode('4'), BinaryTreeNode('8')), BinaryTreeNode('14',
+						BinaryTreeNode('12'), BinaryTreeNode('16')))
 	p = convert_binary_search_tree(t)
 	print_node(p)
