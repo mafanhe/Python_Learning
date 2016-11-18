@@ -3,27 +3,40 @@
 
 # 面试题28：字符串的排列
 def permutation(input):
-	permuta('', list(input))
+	permut('', list(input))
 
 
-def permuta(result, string):
+def permut(result, string):
 	if len(string) == 0:
 		print result
 	for i in range(len(string)):
 		string[i], string[0] = string[0], string[i]
-		permuta(result+string[0], string[1:])
+		permut(result+string[0], string[1:])
 
 
-def permuta2(string, begin):
+def permut2(string, begin):
 
 	if begin == 2:
 		print string
 		return
 	for i in range(begin, len(string)):
 		string[i], string[begin] = string[begin], string[i]
-		permuta2(string, begin+1)
+		permut2(string, begin+1)
 		string[i], string[begin] = string[begin], string[i]
 
 
+# 字符串的组合
+def combination(com, left):
+	print com
+	if not left:
+		return
+	for i in range(len(left)):
+		if left[i] in com:
+			combination(com, left[i+1:])
+		else:
+			combination(com+left[i], left[i+1:])
+
+
 # permutation('abc')
-permuta2(list('abc'), 0)
+# permut2(list('abc'), 0)
+combination('','abcd')
