@@ -207,47 +207,50 @@ def test(sortf, n=100):
     for i in range(n):
         l = [random.randint(1, 10000) for i in range(n)]
         sortf(l, 0, len(l)-1)
-# print 'n=100'
-# test(insert_sort)
-# test(bubble_sort)
-# test(select_sort)
-# test(merge_sort)
-# test(quickSort)
-# test(quickSort2)
-# test(quickSort3)
-# test(shell_sort)
-# test(heap_sort)
-# build_in_sort()
-# print '-'*30
-# print 'n=2000'
-# test(insert_sort,n=1000)
-# test(bubble_sort,n=1000)
-# test(select_sort,n=1000)
-# test(merge_sort, n=2000)
-test(quickSort, n=1000)
-test(quickSort2, n=1000)
-test(quickSort3, n=1000)
-test(quickSort4, n=1000)
-# test(shell_sort, n=2000)
-# test(heap_sort, n=2000)
-build_in_sort(n=1000)
 
 
-# l = [random.randint(1,20) for i in range(20)]
+if __name__ == "__main__":
+    # print 'n=100'
+    # test(insert_sort)
+    # test(bubble_sort)
+    # test(select_sort)
+    # test(merge_sort)
+    # test(quickSort)
+    # test(quickSort2)
+    # test(quickSort3)
+    # test(shell_sort)
+    # test(heap_sort)
+    # build_in_sort()
+    # print '-'*30
+    # print 'n=2000'
+    # test(insert_sort,n=1000)
+    # test(bubble_sort,n=1000)
+    # test(select_sort,n=1000)
+    # test(merge_sort, n=2000)
+    test(quickSort, n=1000)
+    test(quickSort2, n=1000)
+    test(quickSort3, n=1000)
+    test(quickSort4, n=1000)
+    # test(shell_sort, n=2000)
+    # test(heap_sort, n=2000)
+    build_in_sort(n=1000)
 
-# l=[5,8,7,9,3,4,1,2,6]
-# print l
 
-# bubble_sort(l)
-# bubble_sort(l, reverse=True)
-# insert_sort(l)
-# select_sort(l)
-# merge_sort(l, 0, len(l)-1)
-# quickSort3(l,0,len(l)-1)
-# shell_sort(l,0,len(l)-1)
-# shell_sort2(l2,0,len(l2)-1)
-# sort_shell(l3,0,len(l3)-1)
-# heap_sort(l,0,len(l)-1)
-# quickSort4(l,0,len(l)-1)
-# print l
+    # l = [random.randint(1,20) for i in range(20)]
+
+    # l=[5,8,7,9,3,4,1,2,6]
+    # print l
+
+    # bubble_sort(l)
+    # bubble_sort(l, reverse=True)
+    # insert_sort(l)
+    # select_sort(l)
+    # merge_sort(l, 0, len(l)-1)
+    # quickSort3(l,0,len(l)-1)
+    # shell_sort(l,0,len(l)-1)
+    # shell_sort2(l2,0,len(l2)-1)
+    # sort_shell(l3,0,len(l3)-1)
+    # heap_sort(l,0,len(l)-1)
+    # quickSort4(l,0,len(l)-1)
+    # print l
 
