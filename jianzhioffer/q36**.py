@@ -2,23 +2,27 @@
 # 面试题36：数组中的逆序对
 
 
+# 类似归并排序的计算
 def inverse_pairs(data):
 	length = len(data)
 	if not data and length < 0:
 		return 0
 	copy = data[:]
-	count = inserve_pairs_core(data, copy, 0, length-1)
+	count = inverve_pairs_core(data, copy, 0, length-1)
+	print data, copy
 	return count
 
 
-def inserve_pairs_core(data, copy, start, end):
+def inverve_pairs_core(data, copy, start, end):
 	if start == end:
 		copy[start] = data[start]
 		return 0
 
-	length = (start + end) / 2
-	left = inserve_pairs_core(copy, data, start, start+length)
-	right = inserve_pairs_core(copy, data, start+length+1, end)
+	length = (end - start) / 2
+	# left = inverve_pairs_core(data, copy, start, start+length)
+	left = inverve_pairs_core(copy, data, start, start+length)
+	# right = inverve_pairs_core(data, copy, start+length+1, end)
+	right = inverve_pairs_core(copy, data, start+length+1, end)
 
 	# i初始化为前半端最后一个数字的下标
 	i = start + length
@@ -29,16 +33,23 @@ def inserve_pairs_core(data, copy, start, end):
 	while i >= start and j >= start+length+1:
 		if data[i] > data[j]:
 			copy[indexCopy] = data[i]
+			count += j - start - length
 			i -= 1
 		else:
 			copy[indexCopy] = data[j]
 			j -= 1
 		indexCopy -= 1
-	for x in range(i, start-1, -1):
-		copy[indexCopy] = data[x]
+	while i >= start:
+		copy[indexCopy] = data[i]
 		indexCopy -= 1
+		i -= 1
 
-	for y in range(j, start+length+1, -1):
-		copy[indexCopy] = data[y]
+	while j >= start+length+1:
+		copy[indexCopy] = data[j]
 		indexCopy -= 1
+		j -= 1
 	return left + right + count
+
+
+if __name__ == "__main__":
+	print inverse_pairs([7, 5, 6, 4])
