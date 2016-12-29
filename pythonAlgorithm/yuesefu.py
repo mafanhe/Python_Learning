@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 
 # 递归直接求出
 def fun_recursion(m,k):
