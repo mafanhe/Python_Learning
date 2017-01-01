@@ -2,6 +2,7 @@
 
 
 # Listing 4-7. A Naive Solution to the Celebrity Problem
+# O(n^2)
 def naive_celeb(G):
 	n = len(G)
 	for u in range(n):					# For every candidate
@@ -15,9 +16,10 @@ def naive_celeb(G):
 
 
 # Listing 4-8. A Solution to the Celebrity Problem
+# O(n)
 def celeb(G):
 	n = len(G)
-	u, v = 0, 1						# The first tow
+	u, v = 0, 1						# The first two
 	for c in range(2, n+1):			# Other to check
 		if G[u][v]: u = c			# u knows v? Replace u
 		else:		v = c			# Otherwise, replace v
@@ -30,3 +32,16 @@ def celeb(G):
 	else:
 		return c					# No breaks? Celebrity
 	return None						# Couldn't find anyone
+
+
+if __name__ == "__main__":
+	from random import randrange
+	n = 100
+	G = [[randrange(2) for i in range(n)] for i in range(n)]
+	c = randrange(n)
+	print c
+	for i in range(n):
+		G[i][c] = True
+		G[c][i] = False
+	print naive_celeb(G)
+	print celeb(G)
