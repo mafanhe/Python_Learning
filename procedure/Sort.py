@@ -211,15 +211,43 @@ def counting_sort(A, i=None, j=None):
 
 
 # 基数排序O(n)
-def radix_sort():
-    # TODO
-    pass
+# n个记录，d个关键码，关键码的取值范围为radix：时间复杂度为O(d(n+radix))
+def radix_sort(A, _=0, radix=10):
+    """A为整数列表， radix为基数"""
+    bucket = [[] for i in range(radix)]     # 不能用 [[]]*radix
+    k = len(str(max(A)))                    # 用K位数可表示任意整数
+    for i in range(1, k + 1):               # K次循环
+        for val in A:
+            bucket[val % (radix ** i) / (radix ** (i - 1))].append(val)  # 析取整数第K位数字 （从低到高）
+        del A[:]
+        for each in bucket:
+            A.extend(each)                  # 桶合并
+        bucket = [[] for i in range(radix)]
+
+    # for i in range(k):                      # K次循环
+    #     for a in A:
+    #         if len(str(a))<=i:
+    #             index = 0
+    #         else:
+    #             a = str(a)
+    #             index = int(a[len(a)-i-1])
+    #         bucket[index].append(int(a))
+    #     del A[:]
+    #     for each in bucket:
+    #         A.extend(each)
+    #     bucket = [[] for i in range(radix)]
 
 
 # 桶排序O(n)，
-def bucket_sort():
-    # TODO
-    pass
+def bucket_sort(A, _=0, __=0):
+    max_ = max(A)+1
+    buckets = [0]*max_
+    for i in A:
+        buckets[i]+=1
+    res = []
+    for j in range(max_):
+            res.extend([j]*buckets[j])
+    return res
 
 
 @calc_time
@@ -257,17 +285,22 @@ if __name__ == "__main__":
 
     # test(quickSort, n=2000)
     # test(quickSort2, n=2000)
-    test(quickSort3, n=5000)
+    # test(quickSort3, n=1000)
     # test(quickSort4, n=2000)
-    test(counting_sort, n=5000)
+    # test(counting_sort, n=5000)
     # test(shell_sort, n=2000)
     # test(heap_sort, n=2000)
-    build_in_sort(n=5000)
+    # test(radix_sort, n=1000)
+    # build_in_sort(n=1000)
     # l = [random.randint(1,20) for i in range(20)]
 
-    # l=[5,8,7,9,3,4,1,2,6]
-    # print l
+    l=[5,8,7,9,3,4,1,2,6]
+    l = [random.randint(0,10) for i in range(10)]
+    print l
 
+    l = bucket_sort(l)
+    print l
+    # radix_sort(l,10)
     # bubble_sort(l)
     # bubble_sort(l, reverse=True)
     # insert_sort(l)
