@@ -3,6 +3,7 @@
 
 from BinaryTreeNode import BinaryTreeNode
 
+
 # 遍历一次
 def tree_depth(tree):
 	if not tree:
@@ -10,6 +11,7 @@ def tree_depth(tree):
 	left = tree_depth(tree.left)
 	right = tree_depth(tree.right)
 	return max(left+1, right+1)
+
 
 # 遍历多次
 def is_avl_tree(tree):
@@ -21,6 +23,7 @@ def is_avl_tree(tree):
 		return False
 	return is_avl_tree(tree.left) and is_avl_tree(tree.right)
 
+
 # 遍历一次
 def is_avl_tree2(tree, depth=0):
 	if not tree:
@@ -31,6 +34,7 @@ def is_avl_tree2(tree, depth=0):
 		if abs(left-right)>1:
 			return max(left+1, right+1)
 	return False
+
 
 if __name__ == "__main__":
 	t = BinaryTreeNode('-', BinaryTreeNode('*', BinaryTreeNode('a'), BinaryTreeNode('b')), BinaryTreeNode('/', BinaryTreeNode('d'), BinaryTreeNode('e')))
