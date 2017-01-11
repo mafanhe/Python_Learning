@@ -31,15 +31,27 @@ def is_avl_tree2(tree, depth=0):
 		return True
 	left, right = 0, 0
 	if is_avl_tree2(tree.left, left) and is_avl_tree2(tree.right, right):
-		if abs(left-right)>1:
+		if abs(left-right) > 1:
 			return max(left+1, right+1)
 	return False
 
+
+def is_avl_tree3(tree, depth=0):
+	if not tree:
+		depth = 0
+		return True
+	left, right = is_avl_tree2(tree.left, depth), is_avl_tree2(tree.right, depth)
+	if left and right:
+		if abs(left-right) > 1:
+			return max(left+1, right+1)
+	return False
 
 if __name__ == "__main__":
 	t = BinaryTreeNode('-', BinaryTreeNode('*', BinaryTreeNode('a'), BinaryTreeNode('b')), BinaryTreeNode('/', BinaryTreeNode('d'), BinaryTreeNode('e')))
 	t2 = BinaryTreeNode('-', BinaryTreeNode('*',BinaryTreeNode('a')))
 	# print tree_depth(t)
 	# print tree_depth(t2)
+	print is_avl_tree(t)
+	print is_avl_tree(t2)
 	print is_avl_tree2(t)
 	print is_avl_tree2(t2)

@@ -199,8 +199,10 @@ def heapify(l, n, i):
         # 下沉
         heapify(l, n, largest)
 
+# 计数排序、桶排序和基数排序：http://blog.csdn.net/quietwave/article/details/8008572
 
-# counting 排序O(n)
+
+# 计数排序O(n)
 def counting_sort(A, i=None, j=None):
     B, C = [], defaultdict(list)
     for x in A:
@@ -212,6 +214,7 @@ def counting_sort(A, i=None, j=None):
 
 # 基数排序O(n)
 # n个记录，d个关键码，关键码的取值范围为radix：时间复杂度为O(d(n+radix))
+# 改进（若数字位数相差很大）：先通过位数分配到不同的桶中，每个桶在分别进行基数排序。
 def radix_sort(A, _=0, radix=10):
     """A为整数列表， radix为基数"""
     bucket = [[] for i in range(radix)]     # 不能用 [[]]*radix

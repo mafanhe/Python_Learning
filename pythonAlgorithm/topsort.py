@@ -33,8 +33,26 @@ def topsort(G):
 	return S
 
 
+# Exercise 4-19
+def topsort2(G):
+	count = dict((u, 0) for u in G)
+	for u in G:
+		count[u] = len(G[u])
+	Q =[u for u in G if count[u] == 0]
+	S = []
+	while Q:
+		u = Q.pop()
+		S.append(u)
+		for u_ in G:
+			if u in G[u_]:
+				count[u_] -= 1
+				if count[u_] == 0:
+					Q.append(u_)
+	return S[::-1]
+
 if __name__ == "__main__":
 	# G = {'a':{'b','f'},'b':{'c','d','f'},'c':{'d'},'d':{'f','e'},'e':{'f'},'f':{}}
 	G = {'b':{'c','d','f'},'a':{'b','f'},'f':{},'d':{'f','e'},'c':{'d'},'e':{'f'}}
 	print naive_topsort(G)
 	print topsort(G)
+	print topsort2(G)
