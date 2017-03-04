@@ -1,15 +1,16 @@
 # coding=utf8
 import random
 from calc_time import calc_time
+from collections import defaultdict
 
 
 # 交换位置
-def swap(l,i,j):
-    l[i],l[j] = l[j],l[i]
+def swap(l, i, j):
+    l[i], l[j] = l[j], l[i]
 
 
 # 冒泡排序
-def bubble_sort(l,i,j, reverse=False):
+def bubble_sort(l, i, j, reverse=False):
     for i in range(len(l), 0, -1):
         for j in range(0, i-1):
                 if l[j] < l[j+1] and reverse:
@@ -19,7 +20,7 @@ def bubble_sort(l,i,j, reverse=False):
 
 
 # 插入排序
-def insert_sort(l, i,j,reverse=False):
+def insert_sort(l, i, j, reverse=False):
     for i in range(1, len(l)):
         num = l[i]
         j = i-1
@@ -28,16 +29,17 @@ def insert_sort(l, i,j,reverse=False):
             j -= 1
         l[j+1] = num
 
+
 # 选择排序
-def select_sort(l,i,j, reverse=False):
+def select_sort(l, i, j, reverse=False):
     for i in range(len(l)):
         max_num = l[i]
         max_index = i
-        for j in range(i+1,len(l)):
+        for j in range(i+1, len(l)):
             if max_num < l[j]:
                 max_num = l[j]
                 max_index = j
-        swap(l,i,max_index)
+        swap(l, i, max_index)
 
 
 # 希尔排序
@@ -55,6 +57,7 @@ def shell_sort(l, i, j):
                     pos -= gap
                 l[pos] = value
         gap //= 2
+
 
 # 归并排序
 def merge(l, i, m, j):
@@ -104,8 +107,8 @@ def quickSort(l, low, high):
             i += 1
         l[j] = l[i]
     l[i] = key
-    quickSort(l,low,i-1)
-    quickSort(l,j+1, high)
+    quickSort(l, low, i-1)
+    quickSort(l, j+1, high)
 
 
 def quickSort2(l, low, high):
@@ -168,6 +171,7 @@ def quickSort4(l, low, high):
     quickSort(l, low, i-1)
     quickSort(l, i+1, high)
 
+
 # 堆排序
 def heap_sort(l, i, j):
     # 创建堆
@@ -182,7 +186,7 @@ def heap_sort(l, i, j):
 
 # n is size of heap
 # To heapify subtree rooted at index i
-def heapify(l,n,i):
+def heapify(l, n, i):
     largest = i
     left = 2 * i + 1
     right = 2 * i + 2
@@ -194,6 +198,60 @@ def heapify(l,n,i):
         swap(l, largest, i)
         # 下沉
         heapify(l, n, largest)
+
+# 计数排序、桶排序和基数排序：http://blog.csdn.net/quietwave/article/details/8008572
+
+
+# 计数排序O(n)
+def counting_sort(A, i=None, j=None):
+    B, C = [], defaultdict(list)
+    for x in A:
+        C[x].append(x)
+    for k in range(min(C), max(C)):
+        B.extend(C[k])
+    return B
+
+
+# 基数排序O(n)
+# n个记录，d个关键码，关键码的取值范围为radix：时间复杂度为O(d(n+radix))
+# 改进（若数字位数相差很大）：先通过位数分配到不同的桶中，每个桶在分别进行基数排序。
+def radix_sort(A, _=0, radix=10):
+    """A为整数列表， radix为基数"""
+    bucket = [[] for i in range(radix)]     # 不能用 [[]]*radix
+    k = len(str(max(A)))                    # 用K位数可表示任意整数
+    for i in range(1, k + 1):               # K次循环
+        for val in A:
+            bucket[val % (radix ** i) / (radix ** (i - 1))].append(val)  # 析取整数第K位数字 （从低到高）
+        del A[:]
+        for each in bucket:
+            A.extend(each)                  # 桶合并
+        bucket = [[] for i in range(radix)]
+
+    # for i in range(k):                      # K次循环
+    #     for a in A:
+    #         if len(str(a))<=i:
+    #             index = 0
+    #         else:
+    #             a = str(a)
+    #             index = int(a[len(a)-i-1])
+    #         bucket[index].append(int(a))
+    #     del A[:]
+    #     for each in bucket:
+    #         A.extend(each)
+    #     bucket = [[] for i in range(radix)]
+
+
+# 桶排序O(n)，
+def bucket_sort(A, _=0, __=0):
+    max_ = max(A)+1
+    buckets = [0]*max_
+    for i in A:
+        buckets[i]+=1
+    res = []
+    for j in range(max_):
+            res.extend([j]*buckets[j])
+    return res
+
 
 @calc_time
 def build_in_sort(n=100):
@@ -227,20 +285,25 @@ if __name__ == "__main__":
     # test(bubble_sort,n=1000)
     # test(select_sort,n=1000)
     # test(merge_sort, n=2000)
-    test(quickSort, n=1000)
-    test(quickSort2, n=1000)
-    test(quickSort3, n=1000)
-    test(quickSort4, n=1000)
+
+    # test(quickSort, n=2000)
+    # test(quickSort2, n=2000)
+    # test(quickSort3, n=1000)
+    # test(quickSort4, n=2000)
+    # test(counting_sort, n=5000)
     # test(shell_sort, n=2000)
     # test(heap_sort, n=2000)
-    build_in_sort(n=1000)
-
-
+    # test(radix_sort, n=1000)
+    # build_in_sort(n=1000)
     # l = [random.randint(1,20) for i in range(20)]
 
-    # l=[5,8,7,9,3,4,1,2,6]
-    # print l
+    l=[5,8,7,9,3,4,1,2,6]
+    l = [random.randint(0,10) for i in range(10)]
+    print l
 
+    l = bucket_sort(l)
+    print l
+    # radix_sort(l,10)
     # bubble_sort(l)
     # bubble_sort(l, reverse=True)
     # insert_sort(l)
