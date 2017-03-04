@@ -27,7 +27,7 @@ def get_ugly_number(n):
 
 
 def get_ugly_number2(n):
-    ugly_number = [float('inf')]*n
+    ugly_number = [0]*n
     ugly_number[0] = 1
     nextUgly = 1
     num2 = 0
@@ -35,11 +35,11 @@ def get_ugly_number2(n):
     num5 = 0
     while nextUgly < n:
         ugly_number[nextUgly] = (min(ugly_number[num2]*2, ugly_number[num3]*3, ugly_number[num5]*5))
-        while num2 * 2 < ugly_number[nextUgly]:
+        while num2 * 2 <= ugly_number[nextUgly]:
             num2 += 1
-        while num3 * 3 < ugly_number[nextUgly]:
+        while num3 * 3 <= ugly_number[nextUgly]:
             num3 += 1
-        while num5 * 5 < ugly_number[nextUgly]:
+        while num5 * 5 <= ugly_number[nextUgly]:
             num5 += 1
         nextUgly += 1
 
