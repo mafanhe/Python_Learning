@@ -123,3 +123,25 @@ def bfs(G, s):
 			P[v] = u				# Reached from u: u is parent
 			Q.append(v)
 	return P
+
+
+# Kosaraju's Algorithm for Finding Strongly Connected Components
+def tr(G):							# Transpose (rev. edges of) G
+	GT = {}
+	for u in G: GT[u] = set()		# Get all the nodes in there
+	for u in G:
+		for v in G[u]:
+			GT[v].add(u)			# Add all reverse edges
+	return GT
+
+def scc(G):
+	GT = tr(G)						# Get the transposed graph
+	sccs, seen = [], set()
+	for u in dfs_topsort(G):		# DFS starting points
+		if u in seen: continue		# Ignore covered nodes
+		C = walk(GT, u, seen)		# Don't go "backward" (seen)
+		seen.update(C)				# We've now seen C
+		sccs.append(C)				# Another SCC found
+	return sccs
+
+
