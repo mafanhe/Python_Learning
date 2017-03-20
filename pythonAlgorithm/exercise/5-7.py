@@ -5,11 +5,10 @@ def dfs(G, s):
 	seen, stack = set(), [s]
 	firsttime, finishtime = dict(), dict()
 	time = 0
-	node_branch = 0
 	while stack:
 		time += 1
 		u = stack.pop()
-		print u
+		# print u
 		if u in seen:
 			finishtime[u] = time
 		else:
@@ -27,8 +26,30 @@ def dfs(G, s):
 			stack.append(children[0])
 	print firsttime,finishtime
 
+
 def dfs2(G, s):
-	pass
+	seen, stack = set(), [(None, s)]
+	firsttime, finishtime = dict(), dict()
+	time = -1
+	while stack:
+		# print stack
+		u = stack.pop()
+		if u[1] is None:
+			time+=1
+			finishtime[u[0]] = time
+			continue
+		if u[1] in seen:
+			continue
+		# print u
+		time += 1
+		seen.add(u[1])
+		firsttime[u[1]] = time
+		if G[u[1]]:
+			stack.append((u[1], None))
+		for v in G[u[1]]:
+			stack.append((u[1], v))
+	print firsttime, finishtime
+
 
 if __name__ == "__main__":
 	G = {
@@ -39,7 +60,11 @@ if __name__ == "__main__":
 		'5':set('24'),
 		'6':set('1')
 	}
-	dfs(G, '1')
+	print "iter_dfs1:"
+	dfs(G, '2')
+	print "iter_dfs2:"
+	dfs2(G, '2')
 	d, f = dict(), dict()
-	pt.dfs(G,'1',d,f)
+	pt.dfs(G,'2',d,f)
+	print "rec_dfs:"
 	print d,f

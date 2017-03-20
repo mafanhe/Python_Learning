@@ -62,13 +62,13 @@ def traverse(G, s, qtype=set):
 # depth-first Search with Timestamps
 def dfs(G, s, d, f, S=None, t=0):
 	if S is None: S = set()  # Initialize the history
-	d[s] = t;
+	d[s] = t
 	t += 1  # Set discover time
 	S.add(s)  # We've visited s
 	for u in G[s]:  # Explore neighbors
 		if u in S: continue  # Already visited. Skip
 		t = dfs(G, u, d, f, S, t)  # Recurse; update timestamp
-	f[s] = t;
+	f[s] = t
 	t += 1  # Set finish time
 	return t  # return timestamp
 
