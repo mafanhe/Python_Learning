@@ -1,6 +1,6 @@
 # coding=utf8
 import random
-from calc_time import calc_time
+import calc_time
 from collections import defaultdict
 
 
@@ -93,7 +93,7 @@ def merge_sort(l, i, j):
 
 
 # 快速排序
-def quickSort(l, low, high):
+def quickSort1(l, low, high):
     i = low
     j = high
     if i >= j:
@@ -107,8 +107,8 @@ def quickSort(l, low, high):
             i += 1
         l[j] = l[i]
     l[i] = key
-    quickSort(l, low, i-1)
-    quickSort(l, j+1, high)
+    quickSort1(l, low, i-1)
+    quickSort1(l, j+1, high)
 
 
 def quickSort2(l, low, high):
@@ -140,10 +140,10 @@ def quickSort3(l, low, high):
             j -= 1
         while i < j and l[i] <= key:
             i += 1
-        swap(l, i, j)
-    swap(l, i, low)
-    quickSort(l, low, i-1)
-    quickSort(l, i+1, high)
+        swap(l, i, j)   # l[i], l[j] = l[j], l[i]
+    swap(l, i, low)     # l[i],l[low] = l[low],l[i]
+    quickSort3(l, low, i-1)
+    quickSort3(l, i+1, high)
 
 
 def quickSort4(l, low, high):
@@ -168,8 +168,8 @@ def quickSort4(l, low, high):
             i += 1
         swap(l, i, j)
     swap(l, i, index)
-    quickSort(l, low, i-1)
-    quickSort(l, i+1, high)
+    quickSort4(l, low, i-1)
+    quickSort4(l, i+1, high)
 
 
 # 堆排序
@@ -177,8 +177,9 @@ def heap_sort(l, i, j):
     # 创建堆
     n = len(l)
     for i in range(n, -1, -1):
+        # 调整元素
         heapify(l, n, i)
-    # 抽取元素
+    # 抽取元素，"删除"根部最大／最小值，然后将最后一个节点放到根，并进行shift down调整
     for i in range(n-1, 0, -1):
         swap(l, i, 0)
         heapify(l, i, 0)
@@ -253,14 +254,14 @@ def bucket_sort(A, _=0, __=0):
     return res
 
 
-@calc_time
-def build_in_sort(n=100):
+@calc_time.calc_time
+def build_in_sort(n=400):
     for i in range(n):
         l = [random.randint(1, 10000) for i in range(n)]
         l.sort()
 
-@calc_time
-def test(sortf, n=100):
+@calc_time.calc_time
+def test(sortf, n=400):
     print sortf.func_name,
     for i in range(n):
         l = [random.randint(1, 10000) for i in range(n)]
@@ -297,12 +298,12 @@ if __name__ == "__main__":
     # build_in_sort(n=1000)
     # l = [random.randint(1,20) for i in range(20)]
 
-    l=[5,8,7,9,3,4,1,2,6]
-    l = [random.randint(0,10) for i in range(10)]
-    print l
+    # l=[5,8,7,9,3,4,1,2,6]
+    # l = [random.randint(0,20) for i in range(10)]
+    # print l
 
-    l = bucket_sort(l)
-    print l
+    # l = bucket_sort(l)
+    # print l
     # radix_sort(l,10)
     # bubble_sort(l)
     # bubble_sort(l, reverse=True)
@@ -316,4 +317,8 @@ if __name__ == "__main__":
     # heap_sort(l,0,len(l)-1)
     # quickSort4(l,0,len(l)-1)
     # print l
-
+    build_in_sort()
+    test(quickSort1)
+    test(quickSort2)
+    test(quickSort3)
+    test(quickSort4)
