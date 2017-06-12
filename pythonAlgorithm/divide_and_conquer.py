@@ -1,4 +1,3 @@
-
 # Listing 6-1 a general implementation of the Divide and conquer Scheme
 def divide_and_conquer(S, divide, combine):
 	if len(S) == 1: return S
@@ -7,10 +6,12 @@ def divide_and_conquer(S, divide, combine):
 	B = divide_and_conquer(R, divide, combine)
 	return combine(A, B)
 
+
 # Listing 6-2 Insertion into and Search in a Binary Search Tree
 class Node:
 	lft = None
 	rgt = None
+
 	def __init__(self, key, val):
 		self.key = key
 		self.val = val
@@ -69,7 +70,6 @@ def find_kth(lst, k):
 		return find_kth(lft, k)
 	else:
 		return find_kth(rgt, k-len(lft)-1)
-
 
 
 if __name__ == "__main__":
